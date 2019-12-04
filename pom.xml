@@ -61,7 +61,7 @@
     <!--shiro-->
     <shiro.version>1.2.5</shiro.version>
     <!--配置阿里云插件-->
-    <fastjson.version>1.2.15</fastjson.version>
+    <fastjson.version>1.2.25</fastjson.version>
     <httpcomponents.version>4.2.1</httpcomponents.version>
     <commons-lang.version>2.6</commons-lang.version>
     <jetty-util.version>9.3.7.v20160115</jetty-util.version>
