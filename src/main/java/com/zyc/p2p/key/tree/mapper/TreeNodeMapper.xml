@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyc.p2p.key.tree.mapper.TreeNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.tree.model.TreeNode" >
+    <constructor >
+      <idArg column="tree_node_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tree_node_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tree_node_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parent_node_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="position" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tree_node_id, tree_node_name, tree_node_type, parent_node_id, url, position, icon
+  </sql>
+
+  <select id="setTreeNode" resultType="com.zyc.p2p.key.tree.model.TreeNode">
+     SELECT * from t_tree_node where 1 = 1 and parent_node_id = #{treeNodeId}
+  </select>
+
+  <select id="TreeNodelist" resultType="com.zyc.p2p.key.tree.model.TreeNode"
+          parameterType="com.zyc.p2p.key.tree.model.TreeDto">
+    SELECT * from t_tree_node where 1 = 1 and parent_node_id is null
+    <foreach collection="tree_node_id" item="tree_node_id" separator="," open=" and tree_node_id in (" close=")">
+      #{tree_node_id}
+    </foreach>
+  </select>
+</mapper>

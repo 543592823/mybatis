@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyc.p2p.key.user.mapper.UserPfuserMapper" >
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.user.model.UserPfuser" >
+    <constructor >
+      <idArg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="score" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bank_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="income_grade" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="marriage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="kid_count" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="education_background" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_condition" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, password, salt, phone_number, score, real_name, bank_number, 
+    id_number, income_grade, marriage, kid_count, education_background, house_condition, 
+    email
+  </sql>
+    <delete id="delPfUser" parameterType="com.zyc.p2p.key.user.model.UserPfuser">
+      DELETE FROM user_pfuser WHERE user_id = #{userId}
+    </delete>
+    <select id="PfuserListPager" resultType="com.zyc.p2p.key.user.model.UserPfuser"
+          parameterType="com.zyc.p2p.key.user.model.UserPfuser">
+    SELECT user_id,real_name,phone_number,id_number,score,bank_number,income_grade,marriage,marriage,kid_count,education_background,house_condition
+    FROM user_pfuser WHERE 1 = 1
+    <if test=" null != realName and '' != realName " >
+      and real_name like concat('%',concat(#{realName},'%'))
+    </if>
+    <if test=" null != idNumber and '' != idNumber " >
+      and id_number like concat('%',concat(#{idNumber},'%'))
+    </if>
+    <if test="null != phoneNumber and '' != phoneNumber " >
+      and phone_number like concat('%',concat(#{phoneNumber},'%'))
+    </if>
+    ORDER BY user_id DESC
+  </select>
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyc.p2p.key.sys.mapper.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.sys.model.SysRolePermission">
+    <constructor>
+      <arg column="roleid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="perid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <select id="deleteByPrimaryKey" resultType="int">
+
+  </select>
+</mapper>

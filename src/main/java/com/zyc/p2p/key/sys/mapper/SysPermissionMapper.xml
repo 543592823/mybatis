@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyc.p2p.key.sys.mapper.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.sys.model.SysPermission">
+    <constructor>
+      <idArg column="perid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pername" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    perid, pername, pid, permission
+  </sql>
+  <select id="deleteByPrimaryKey" resultType="int">
+
+  </select>
+</mapper>

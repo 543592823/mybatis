@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyc.p2p.key.bas.mapper.BasDictMapper" >
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.bas.model.BasDict" >
+    <constructor >
+      <idArg column="dict_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="dict_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dict_item" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dict_value" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dict_is_editable" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_id, dict_type, dict_item, dict_value, dict_is_editable
+  </sql>
+  <insert id="insert" parameterType="com.zyc.p2p.key.bas.model.BasDict" >
+    insert into bas_dict (dict_type, dict_item,
+      dict_value, dict_is_editable)
+    values (#{dictType,jdbcType=VARCHAR}, #{dictItem,jdbcType=VARCHAR},
+      #{dictValue,jdbcType=VARCHAR}, #{dictIsEditable,jdbcType=INTEGER})
+  </insert>
+  <update id="uptBasDict" parameterType="com.zyc.p2p.key.bas.model.BasDict">
+    UPDATE bas_dict SET dict_type = #{dictType},dict_item=#{dictItem},dict_value=#{dictValue},dict_is_editable=#{dictIsEditable}
+    WHERE dict_id = #{dictId}
+  </update>
+  <delete id="delBasDict" parameterType="com.zyc.p2p.key.bas.model.BasDict">
+    DELETE FROM bas_dict WHERE dict_id = #{dictId}
+  </delete>
+  <select id="doList" resultType="com.zyc.p2p.key.bas.model.BasDict">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM bas_dict
+    WHERE 1 = 1
+  </select>
+  <select id="basDictListPager" resultType="com.zyc.p2p.key.bas.model.BasDict"
+          parameterType="com.zyc.p2p.key.bas.model.BasDict">
+    SELECT * FROM bas_dict WHERE 1 = 1
+    <if test=" null != dictType and '' != dictType " >
+      and dict_type like concat('%',concat(#{dictType},'%'))
+    </if>
+    ORDER BY dict_id DESC
+  </select>
+</mapper>

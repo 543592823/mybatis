@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyc.p2p.key.pact.mapper.PactUserpactMapper" >
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.pact.model.PactUserpact" >
+    <constructor >
+      <idArg column="pact_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loan_manay" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="perlods" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loan_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pact_id, real_name, id_number, phone_number, loan_manay, perlods, loan_time
+  </sql>
+  <insert id="insertPact" parameterType="com.zyc.p2p.key.pact.model.PactUserpact" >
+    insert into pact_userpact (real_name, id_number,phone_number, loan_manay, perlods)
+    values (#{realName}, #{idNumber}, #{phoneNumber}, #{loanManay}, #{perlods})
+  </insert>
+  <select id="selPactListPager" resultType="com.zyc.p2p.key.pact.model.PactUserpact"
+          parameterType="com.zyc.p2p.key.pact.model.PactUserpact">
+     SELECT
+     <include refid="Base_Column_List"/>
+     FROM pact_userpact
+     WHERE 1 = 1
+    <if test=" null != realName and '' != realName " >
+      and real_name like concat('%',concat(#{realName},'%'))
+    </if>
+    <if test=" null != idNumber and '' != idNumber " >
+      and id_number like concat('%',concat(#{idNumber},'%'))
+    </if>
+    <if test="null != phoneNumber and '' != phoneNumber " >
+      and phone_number like concat('%',concat(#{phoneNumber},'%'))
+    </if>
+    ORDER BY pact_id DESC
+  </select>
+</mapper>

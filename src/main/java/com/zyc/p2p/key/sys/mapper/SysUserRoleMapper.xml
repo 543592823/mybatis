@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyc.p2p.key.sys.mapper.SysUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.sys.model.SysUserRole">
+    <constructor>
+      <idArg column="urid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="userid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="roleid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    urid, userid, roleid
+  </sql>
+  <insert id="addSysUser" parameterType="com.zyc.p2p.key.sys.model.SysUserRole">
+    INSERT INTO t_sys_user_role (userid,roleid) VALUES (#{userid},#{roleid})
+  </insert>
+  <update id="uptSysRole" parameterType="com.zyc.p2p.key.sys.model.SysUserRole">
+    UPDATE t_sys_user_role set roleid = #{roleid} WHERE userid = #{userid}
+  </update>
+  <delete id="delSysRole" parameterType="com.zyc.p2p.key.sys.model.SysUserRole">
+    DELETE FROM t_sys_user_role WHERE userid = #{userid}
+  </delete>
+  <select id="selMaxUserId" resultType="int">
+    SELECT MAX(userid) AS userid FROM t_sys_user_role
+  </select>
+</mapper>

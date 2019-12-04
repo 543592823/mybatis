@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyc.p2p.key.audit.mapper.AuditTaskMapper" >
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.audit.model.AuditTask" >
+    <constructor >
+      <idArg column="audit_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loan_manay" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="perlods" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="refund_manay" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="loan_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="auditor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="refund_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="overdue_day" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    audit_id, real_name, id_number, phone_number, loan_manay, perlods, refund_manay, 
+    loan_time, auditor, refund_time, overdue_day, state
+  </sql>
+  <insert id="insert" parameterType="com.zyc.p2p.key.audit.model.AuditTask" >
+    insert into audit_task (audit_id, real_name, id_number, 
+      phone_number, loan_manay, perlods, 
+      refund_manay, loan_time, auditor, 
+      refund_time, overdue_day, state
+      )
+    values (#{auditId,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{loanManay,jdbcType=REAL}, #{perlods,jdbcType=INTEGER}, 
+      #{refundManay,jdbcType=REAL}, #{loanTime,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR}, 
+      #{refundTime,jdbcType=VARCHAR}, #{overdueDay,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+    <select id="tackListPager" resultType="com.zyc.p2p.key.audit.model.AuditTask"
+            parameterType="com.zyc.p2p.key.audit.model.AuditTask">
+      SELECT audit_id,real_name,id_number,phone_number,loan_manay,perlods,refund_manay,loan_time,state,auditor
+      FROM audit_task WHERE 1 = 1
+      <if test=" null != realName and '' != realName " >
+        and real_name like concat('%',concat(#{realName},'%'))
+      </if>
+      <if test=" null != idNumber and '' != idNumber " >
+        and id_number like concat('%',concat(#{idNumber},'%'))
+      </if>
+      <if test="null != phoneNumber and '' != phoneNumber " >
+        and phone_number like concat('%',concat(#{phoneNumber},'%'))
+      </if>
+      <if test="null != auditor and '' != auditor " >
+        and auditor like concat('%',concat(#{auditor},'%'))
+      </if>
+      ORDER BY audit_id DESC
+</select>
+  <select id="myTackListPager" resultType="com.zyc.p2p.key.audit.model.AuditTask"
+          parameterType="com.zyc.p2p.key.audit.model.AuditTask">
+    SELECT audit_id,real_name,id_number,phone_number,loan_manay,perlods,refund_manay,loan_time,state,auditor
+    FROM audit_task WHERE 1 = 1
+    <if test=" null != realName and '' != realName " >
+      and real_name like concat('%',concat(#{realName},'%'))
+    </if>
+    <if test=" null != idNumber and '' != idNumber " >
+      and id_number like concat('%',concat(#{idNumber},'%'))
+    </if>
+    <if test="null != phoneNumber and '' != phoneNumber " >
+      and phone_number like concat('%',concat(#{phoneNumber},'%'))
+    </if>
+      and auditor = #{auditor}
+      ORDER BY audit_id DESC
+  </select>
+    <select id="putTackListPager" resultType="com.zyc.p2p.key.audit.model.AuditTask"
+            parameterType="com.zyc.p2p.key.audit.model.AuditTask">
+      SELECT audit_id,real_name,id_number,phone_number,loan_manay,perlods,refund_manay,state
+      FROM audit_task WHERE 1 = 1
+      <if test=" null != realName and '' != realName " >
+        and real_name like concat('%',concat(#{realName},'%'))
+      </if>
+      <if test=" null != idNumber and '' != idNumber " >
+        and id_number like concat('%',concat(#{idNumber},'%'))
+      </if>
+      <if test="null != phoneNumber and '' != phoneNumber " >
+        and phone_number like concat('%',concat(#{phoneNumber},'%'))
+      </if>
+      ORDER BY audit_id DESC
+    </select>
+</mapper>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.zyc</groupId>
+  <artifactId>p2p</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>p2p Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!--junit-->
+    <junit.version>4.12</junit.version>
+    <!--servlet-->
+    <javax-servlet-api.version>4.0.0</javax-servlet-api.version>
+    <!--mybatis-->
+    <mybatis.version>3.4.5</mybatis.version>
+    <!--mysql-->
+    <mysql.version>5.1.44</mysql.version>
+    <!--lombok-->
+    <lombok.version>1.18.2</lombok.version>
+    <!--log4j2-->
+    <log4j2.version>2.9.1</log4j2.version>
+    <slf4j.version>1.7.13</slf4j.version>
+    <log4j2.disruptor.version>3.2.0</log4j2.disruptor.version>
+    <!--generator-->
+    <generator.version>1.3.2</generator.version>
+    <!--spring 5.0.0.RELEASE-->
+    <spring.version>5.0.2.RELEASE</spring.version>
+    <!--Mybatis分页:pagehelper-->
+    <pagehelper.version>5.1.2</pagehelper.version>
+    <!--mybatis-spring-->
+    <mybatis-spring.version>1.3.1</mybatis-spring.version>
+    <!--添加dbcp2连接池-->
+    <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+    <commons-pool2.version>2.4.3</commons-pool2.version>
+    <!--mybatis+ehcache-->
+    <ehcache.version>2.10.0</ehcache.version>
+    <mybatis-ehcache.version>1.1.0</mybatis-ehcache.version>
+    <!-- redis与spring的整合依赖 -->
+    <redis.version>2.9.0</redis.version>
+    <redis.spring.version>1.7.1.RELEASE</redis.spring.version>
+    <!-- jackson -->
+    <jackson.version>2.9.3</jackson.version>
+    <!--jstl-->
+    <jstl.version>1.2</jstl.version>
+    <!--standard-->
+    <standard.version>1.1.2</standard.version>
+    <!--commons-fileupload-->
+    <commons-fileupload.version>1.3.3</commons-fileupload.version>
+    <!--jsr303:hibernate-validator-->
+    <hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
+    <!--shiro-->
+    <shiro.version>1.2.5</shiro.version>
+    <!--配置阿里云插件-->
+    <fastjson.version>1.2.15</fastjson.version>
+    <httpcomponents.version>4.2.1</httpcomponents.version>
+    <commons-lang.version>2.6</commons-lang.version>
+    <jetty-util.version>9.3.7.v20160115</jetty-util.version>
+  </properties>
+
+  <dependencies>
+    <!--++++++++++++++OSS文件上传++++++++++++++++++-->
+    <!---->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>4.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aliyun.oss</groupId>
+      <artifactId>aliyun-sdk-oss</artifactId>
+      <version>3.8.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpcomponents.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpcore</artifactId>
+      <version>${httpcomponents.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>${commons-lang.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-util</artifactId>
+      <version>${jetty-util.version}</version>
+    </dependency>
+    <!--junit-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!--servlet-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${javax-servlet-api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--mybatis-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+
+    <!--mysql-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+
+    <!--lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--记得修改mybatis.cfg.xml添加如下内容-->
+    <!--<setting name="logImpl" value="LOG4J2"/>-->
+    <!-- log4j2日志相关依赖 -->
+    <!-- log配置：Log4j2 + Slf4j -->
+    <!-- slf4j核心包-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!--核心log4j2jar包-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <!--用于与slf4j保持桥接-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <!--web工程需要包含log4j-web，非web工程不需要-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>${log4j2.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!--需要使用log4j2的AsyncLogger需要包含disruptor-->
+    <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <version>${log4j2.disruptor.version}</version>
+    </dependency>
+    <!--spring 5.0.2.RELEASE-->
+    <!--spring-core-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-beans-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-context-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-orm-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-tx-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-aspects-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--spring-web-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--Spring MVC-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--视图解析器，解析View时需要-->
+    <!--jstl-->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${jstl.version}</version>
+    </dependency>
+    <!--standard-->
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>${standard.version}</version>
+    </dependency>
+    <!--Mybatis分页:pagehelper-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>${pagehelper.version}</version>
+    </dependency>
+    <!--mybatis-spring-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis-spring.version}</version>
+    </dependency>
+    <!--数据库连接池-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>${commons-dbcp2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+      <version>${commons-pool2.version}</version>
+    </dependency>
+
+    <!--Spring对Nybatis的相关支持-->
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-context-support</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+
+    <!--mybatis与ehcache整合-->
+    <!--<dependency>-->
+    <!--<groupId>org.mybatis.caches</groupId>-->
+    <!--<artifactId>mybatis-ehcache</artifactId>-->
+    <!--<version>${mybatis-ehcache.version}</version>-->
+    <!--</dependency>-->
+
+    <!--ehcache依赖-->
+    <!--<dependency>-->
+    <!--<groupId>net.sf.ehcache</groupId>-->
+    <!--<artifactId>ehcache</artifactId>-->
+    <!--<version>${ehcache.version}</version>-->
+    <!--</dependency>-->
+
+    <!--redis-->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>${redis.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>${redis.spring.version}</version>
+    </dependency>
+
+    <!-- jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <!--commons-fileupload-->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>${commons-fileupload.version}</version>
+    </dependency>
+
+    <!--jsr303:hibernate-validator-->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+
+    <!--shiro-->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <!-- 添加shiro web支持 -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-web</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+    <!-- 添加shiro-spring支持 -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>${shiro.version}</version>
+    </dependency>
+
+  </dependencies>
+
+
+  <build>
+    <finalName>p2p</finalName>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+        </plugin>
+
+        <!--代码生成插件-->
+        <plugin>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>${generator.version}</version>
+          <dependencies>
+            <!--使用Mybatis-generator插件不能使用太高版本的mysql驱动 -->
+            <dependency>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <version>${mysql.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <overwrite>true</overwrite>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <!--解决maven编译时没有xml文件的错误-->
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+      <!--在编译后的target文件夹下，而没有jdbc.properties文件，但同时不能少了*.xml-->
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>*.properties</include>
+          <include>*.ini</include>
+          <include>*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>

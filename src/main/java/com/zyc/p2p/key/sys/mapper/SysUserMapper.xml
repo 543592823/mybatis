@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyc.p2p.key.sys.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.zyc.p2p.key.sys.model.SysUser">
+    <constructor>
+      <idArg column="userid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PASSWORD" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="salt" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createdate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, username, PASSWORD, salt, createdate
+  </sql>
+  <insert id="addSysUser" parameterType="com.zyc.p2p.key.sys.model.SysUser">
+    INSERT INTO t_sys_user (username,PASSWORD,salt) VALUES (#{username},#{password},#{salt})
+  </insert>
+    <update id="uptSysUser" parameterType="com.zyc.p2p.key.sys.model.SysUser">
+      UPDATE t_sys_user SET username = #{username},PASSWORD=#{password},salt=#{salt} WHERE userid = #{userid}
+    </update>
+  <delete id="delSysUser" parameterType="com.zyc.p2p.key.sys.model.SysUser">
+    DELETE FROM t_sys_user WHERE userid = #{userid}
+  </delete>
+  <select id="userLogin" resultType="com.zyc.p2p.key.sys.model.SysUser">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_sys_user WHERE username =#{username}
+  </select>
+  <select id="findRoles" resultType="string">
+    SELECT r.rolename FROM t_sys_user u,t_sys_user_role ur,t_sys_role r
+        WHERE u.`userid`=ur.`userid` AND ur.`roleid` = r.`roleid` AND u.`username` = #{username}
+  </select>
+  <select id="findPermissions" resultType="string">
+     SELECT p.permission FROM t_sys_user u,t_sys_user_role ur,t_sys_role r,
+    t_sys_role_permission rp , t_sys_permission p WHERE u.`userid` = ur.`userid` AND
+    ur.`roleid` = r.`roleid` AND r.`roleid` = rp.roleid AND rp.perid = p.perid AND u.`username` = #{username}
+  </select>
+  <select id="selSysUserPager" resultType="com.zyc.p2p.key.sys.model.SysUser"
+          parameterType="com.zyc.p2p.key.sys.model.SysUser">
+    SELECT u.userid AS userid,u.username AS username,r.rolename AS rolename ,u.createdate AS createdate
+    FROM t_sys_user u,t_sys_user_role ur,t_sys_role r
+    WHERE u.`userid`=ur.`userid` AND ur.`roleid` = r.`roleid`
+    <if test=" null != username and '' != username " >
+      and u.username like concat('%',concat(#{username},'%'))
+    </if>
+    <if test=" null != rolename and '' != rolename " >
+      and r.rolename like concat('%',concat(#{rolename},'%'))
+    </if>
+    ORDER BY u.userid DESC
+  </select>
+  <select id="lisUser" resultType="com.zyc.p2p.key.sys.model.SysUser">
+    SELECT username FROM t_sys_user WHERE 1 = 1
+  </select>
+    <select id="selMaxUserId" resultType="int">
+      SELECT MAX(userid) AS userid FROM t_sys_user
+    </select>
+</mapper>
