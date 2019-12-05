@@ -21,7 +21,7 @@ public class AuditTaskController extends BaseAction{
     private IAuditTaskService auditTaskService;
 
     //审核任务
-    @RequestMapping("/tack")
+    @RequestMapping("/task")
     @ResponseBody
     public Map<String, Object> tackList(AuditTask auditTask, HttpServletRequest request){
         Map<String, Object> map = null;
@@ -37,7 +37,7 @@ public class AuditTaskController extends BaseAction{
     }
 
     //我的审核任务
-    @RequestMapping("/myTack")
+    @RequestMapping("/myTask")
     @ResponseBody
     public Map<String, Object> myTackList(AuditTask auditTask, HttpServletRequest request){
         Map<String, Object> map = null;
@@ -67,5 +67,22 @@ public class AuditTaskController extends BaseAction{
         }
         return map;
     }
+
+    //放款复核
+    @RequestMapping("/uptTask")
+    @ResponseBody
+    public Map<String, Object> uptTackState(AuditTask auditTask){
+        Map<String, Object> map = null;
+        System.err.println("auditTask=="+auditTask);
+        try {
+            this.auditTaskService.uptTackState(auditTask);
+            map = this.toMessage("审核成功", 1, null);
+        } catch (Exception e) {
+            map = this.toMessage("审核失败", 0, null);
+        }
+        System.err.println("map=="+map);
+        return map;
+    }
+
 
 }

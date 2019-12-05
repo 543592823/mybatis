@@ -35,5 +35,10 @@ public class AuditTaskServiceImpl implements IAuditTaskService {
         return this.auditTaskMapper.putTackListPager(auditTask);
     }
 
+    @Override
+    public int uptTackState(AuditTask auditTask) throws Exception {
+        return this.auditTaskMapper.uptTackState(auditTask);
+    }
+
 
 }

@@ -18,4 +18,6 @@ public interface IAuditTaskService {
     //放款复核
     List<AuditTask> putTackListPager(AuditTask auditTask,PageBean pageBean) throws Exception;
 
+    //审核任务
+    int uptTackState(AuditTask auditTask) throws Exception;
 }
