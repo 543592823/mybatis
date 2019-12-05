@@ -27,6 +27,7 @@ public class UserController extends BaseAction{
         Map<String, Object> map = null;
         PageBean pageBean = new PageBean();
         pageBean.inItRequest(request);
+
         try {
             List<UserPfuser> userPfusers = this.userPfuserService.PfuserListPager(userPfuser,pageBean);
             map = this.toPage("查询成功", 1, userPfusers,pageBean);

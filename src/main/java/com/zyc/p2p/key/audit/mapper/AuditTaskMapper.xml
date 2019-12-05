@@ -46,9 +46,7 @@
       <if test="null != phoneNumber and '' != phoneNumber " >
         and phone_number like concat('%',concat(#{phoneNumber},'%'))
       </if>
-      <if test="null != auditor and '' != auditor " >
-        and auditor like concat('%',concat(#{auditor},'%'))
-      </if>
+        AND state = '待审核'
       ORDER BY audit_id DESC
 </select>
   <select id="myTackListPager" resultType="com.zyc.p2p.key.audit.model.AuditTask"
@@ -79,6 +77,9 @@
       </if>
       <if test="null != phoneNumber and '' != phoneNumber " >
         and phone_number like concat('%',concat(#{phoneNumber},'%'))
+      </if>
+      <if test="null != state and '' != state " >
+        and state like concat('%',concat(#{state},'%'))
       </if>
       ORDER BY audit_id DESC
     </select>
