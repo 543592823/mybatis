@@ -163,5 +163,23 @@ public class AuditTaskController extends BaseAction{
         return map;
     }
 
+    //逾期管理
+    @RequestMapping("/overdueList")
+    @ResponseBody
+    public Map<String, Object> overdueList(AuditTask auditTask, HttpServletRequest request){
+        Map<String, Object> map = null;
+        PageBean pageBean = new PageBean();
+        pageBean.inItRequest(request);
+       // auditTask.setOverdueDay();
+        try {
+            List<AuditTask> list = this.auditTaskService.overdueList(auditTask,pageBean);
+            map = this.toPage("查询成功", 1, list,pageBean);
+        } catch (Exception e) {
+            map = this.toMessage("查询失败", 0, null);
+        }
+        System.err.println("map=="+map);
+        return map;
+    }
+
 
 }

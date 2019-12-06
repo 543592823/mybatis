@@ -50,5 +50,10 @@ public class AuditTaskServiceImpl implements IAuditTaskService {
         return this.auditTaskMapper.loanListPager(auditTask);
     }
 
+    @Override
+    public List<AuditTask> overdueList(AuditTask auditTask,PageBean pageBean) throws Exception {
+        return auditTaskMapper.overdueList(auditTask);
+    }
+
 
 }

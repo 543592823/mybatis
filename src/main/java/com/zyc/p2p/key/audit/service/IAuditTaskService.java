@@ -26,4 +26,7 @@ public interface IAuditTaskService {
 
     //正常扣款
     List<AuditTask> loanListPager(AuditTask auditTask,PageBean pageBean) throws Exception;
+
+    //逾期管理
+    List<AuditTask> overdueList(AuditTask auditTask,PageBean pageBean) throws Exception;
 }

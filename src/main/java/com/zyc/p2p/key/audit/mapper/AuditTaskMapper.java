@@ -28,6 +28,9 @@ public interface AuditTaskMapper {
     //正常扣款
     List<AuditTask> loanListPager(AuditTask auditTask) throws Exception;
 
+    //逾期管理
+    List<AuditTask> overdueList(AuditTask auditTask) throws Exception;
+
 
 
 

@@ -12,4 +12,7 @@ public interface ChargeRecordMapper {
 
     List<ChargeRecord> selChargePager(ChargeRecord record) throws Exception;
 
+
+
+
 }
