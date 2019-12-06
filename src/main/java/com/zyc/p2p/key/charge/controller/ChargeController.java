@@ -7,6 +7,7 @@ import com.zyc.p2p.key.charge.model.ChargeRecord;
 import com.zyc.p2p.key.charge.service.IChargeRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,18 +23,21 @@ public class ChargeController extends BaseAction {
     private IChargeRecordService chargeRecordService;
 
     //查询扣款记录
-    @RequestMapping("/list")
+    @RequestMapping("/recordList")
     @ResponseBody
     public Map<String, Object> selCharge(ChargeRecord record, HttpServletRequest request){
         Map<String, Object> map = null;
         PageBean pageBean = new PageBean();
         pageBean.inItRequest(request);
+        System.err.println("record=="+record);
         try {
             List<ChargeRecord> list = this.chargeRecordService.selChargePager(record,pageBean);
+            System.err.println("list=="+list);
             map = this.toPage("查询成功", 1, list,pageBean);
         } catch (Exception e) {
             map = this.toMessage("查询失败", 0, null);
         }
+        System.err.println("map=="+map);
         return map;
     }
 

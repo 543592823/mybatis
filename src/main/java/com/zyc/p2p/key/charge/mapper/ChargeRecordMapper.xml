@@ -15,6 +15,9 @@
       <arg column="refund_date" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+  <sql id="Base_Column_List" >
+    real_name, id_number, perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date
+  </sql>
   <insert id="insert" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord" >
     insert into charge_record (real_name, id_number, perlods, 
       current_return, capital, service_cost, 
@@ -91,6 +94,8 @@
     </trim>
   </insert>
   <select id="selChargePager" resultType="com.zyc.p2p.key.charge.model.ChargeRecord">
-    SELECT * FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber};
+    SELECT
+    perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date
+    FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber}
   </select>
 </mapper>

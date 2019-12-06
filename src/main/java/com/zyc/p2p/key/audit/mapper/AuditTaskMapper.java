@@ -28,8 +28,5 @@ public interface AuditTaskMapper {
     //正常扣款
     List<AuditTask> loanListPager(AuditTask auditTask) throws Exception;
 
-    //扣款记录
-    List<AuditTask> recordListPager(AuditTask auditTask) throws Exception;
-
 
 }

@@ -106,11 +106,4 @@
       ORDER BY audit_id DESC
 
   </select>
-    <select id="recordListPager" resultType="com.zyc.p2p.key.audit.model.AuditTask"
-            parameterType="com.zyc.p2p.key.audit.model.AuditTask">
-      SELECT loan_manay,perlods,refund_manay,state,refund_time
-      FROM audit_task WHERE 1 = 1
-      and id_number = #{idNumber}
-      ORDER BY audit_id DESC
-    </select>
 </mapper>
