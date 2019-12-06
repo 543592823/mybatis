@@ -1,6 +1,7 @@
 package com.zyc.p2p.key.charge.controller;
 
 import com.zyc.p2p.base.action.BaseAction;
+import com.zyc.p2p.base.util.MyDateUtil;
 import com.zyc.p2p.base.util.PageBean;
 import com.zyc.p2p.key.audit.model.AuditTask;
 import com.zyc.p2p.key.charge.model.ChargeRecord;
@@ -48,6 +49,9 @@ public class ChargeController extends BaseAction {
         Map<String, Object> map = null;
         PageBean pageBean = new PageBean();
         pageBean.inItRequest(request);
+        Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
+
+       // record.setOverdueCount();
         System.err.println("record=="+record);
         try {
             List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
