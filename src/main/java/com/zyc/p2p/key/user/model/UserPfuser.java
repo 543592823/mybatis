@@ -2,16 +2,24 @@ package com.zyc.p2p.key.user.model;
 
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 @ToString
 public class UserPfuser {
     private Integer userId;
 
+    //    @NotBlank(message = "用户名不能为空")
     private String userName;
 
+    //    @Size(min = 6, max = 30, message = "密码长度应当在 6 ~ 30 个字符之间")
     private String password;
+
 
     private String salt;
 
+    //    @Pattern(regexp = "/^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\\d{8}$/")  //被注释的元素必须符合指定的正则表达式
     private String phoneNumber;
 
     private Integer score;

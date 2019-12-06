@@ -13,4 +13,13 @@ public interface IUserPfuserService {
     //删除
     int delPfUser(UserPfuser userPfuser)throws Exception;
 
+    //============================================龙娟=============================================================
+
+    //根据用户名查账号信息
+    UserPfuser listByUserName(String userName);
+
+
+    //注册 (龙娟)
+    int registerUser(UserPfuser userPfuser);
+
 }

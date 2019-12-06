@@ -25,10 +25,13 @@
     id_number, income_grade, marriage, kid_count, education_background, house_condition, 
     email
   </sql>
-    <delete id="delPfUser" parameterType="com.zyc.p2p.key.user.model.UserPfuser">
-      DELETE FROM user_pfuser WHERE user_id = #{userId}
-    </delete>
-    <select id="PfuserListPager" resultType="com.zyc.p2p.key.user.model.UserPfuser"
+  <insert id="registerUser" parameterType="com.zyc.p2p.key.user.model.UserPfuser">
+    INSERT INTO user_pfuser (user_name,password,salt,phone_number) VALUES (#{userName},#{password},#{salt},#{phoneNumber})
+  </insert>
+  <delete id="delPfUser" parameterType="com.zyc.p2p.key.user.model.UserPfuser">
+    DELETE FROM user_pfuser WHERE user_id = #{userId}
+  </delete>
+  <select id="PfuserListPager" resultType="com.zyc.p2p.key.user.model.UserPfuser"
           parameterType="com.zyc.p2p.key.user.model.UserPfuser">
     SELECT user_id,real_name,phone_number,id_number,score,bank_number,income_grade,marriage,marriage,kid_count,education_background,house_condition
     FROM user_pfuser WHERE 1 = 1
@@ -42,6 +45,12 @@
       and phone_number like concat('%',concat(#{phoneNumber},'%'))
     </if>
     ORDER BY user_id DESC
+  </select>
+  <select id="listByUserName" resultType="com.zyc.p2p.key.user.model.UserPfuser">
+    select
+    <include refid="Base_Column_List"/>
+    from user_pfuser
+    where user_name = #{userName}
   </select>
 
 </mapper>

@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class DxyzTest {
 
+    //获取验证码
     public String RandomNote(){
         Random rd = new Random();
         Integer randomNum = rd.nextInt(1000000);
@@ -17,7 +18,8 @@ public class DxyzTest {
         return s;
     }
 
-    public String mobile(String mobile) {
+    //发送短信
+    public String sendMsg(String mobile) {
         String host = "http://codesms.market.alicloudapi.com";
         String path = "/sms/send/template/code/70";
         String method = "POST";
@@ -64,8 +66,9 @@ public class DxyzTest {
         return run;
     }
 
+    //
     public void lj(String mobile){
-        mobile = "18711539016";
+//        mobile = "18711539016";
 //        String s = mobile(mobile);
         String s = RandomNote();
         System.out.println("s=="+s);
@@ -73,11 +76,12 @@ public class DxyzTest {
         setRun(s,"name");
     }
 
+    //验证码验证
     public String cs(String str){
         //测试
         String name = getRun("name");
-        System.out.println(name);
-        str = "246496";
+//        System.out.println(name);
+//        str = "246496";
         String message= "";
         if(str.equals(name)){
             message ="验证成功";

@@ -24,4 +24,17 @@ public class UserPfuserServiceImpl implements IUserPfuserService {
     public int delPfUser(UserPfuser userPfuser) throws Exception {
         return this.userPfuserMapper.delPfUser(userPfuser);
     }
+
+
+    //============================================龙娟=============================================================
+
+    @Override
+    public UserPfuser listByUserName(String userName) {
+        return this.userPfuserMapper.listByUserName(userName);
+    }
+
+    @Override
+    public int registerUser(UserPfuser userPfuser){
+        return this.userPfuserMapper.registerUser(userPfuser);
+    }
 }
