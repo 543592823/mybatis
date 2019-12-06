@@ -41,4 +41,23 @@ public class ChargeController extends BaseAction {
         return map;
     }
 
+    //逾期详情
+    @RequestMapping("/overdueDetails")
+    @ResponseBody
+    public Map<String, Object> overdueDetails(ChargeRecord record, HttpServletRequest request){
+        Map<String, Object> map = null;
+        PageBean pageBean = new PageBean();
+        pageBean.inItRequest(request);
+        System.err.println("record=="+record);
+        try {
+            List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
+            System.err.println("list=="+list);
+            map = this.toPage("查询成功", 1, list,pageBean);
+        } catch (Exception e) {
+            map = this.toMessage("查询失败", 0, null);
+        }
+        System.err.println("map=="+map);
+        return map;
+    }
+
 }

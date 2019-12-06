@@ -29,4 +29,9 @@ public class ChargeRecordServiceImpl implements IChargeRecordService {
     public List<ChargeRecord> selChargePager(ChargeRecord record,PageBean pageBean) throws Exception {
         return this.chargeRecordMapper.selChargePager(record);
     }
+
+    @Override
+    public List<ChargeRecord> overdueDetails(ChargeRecord chargeRecord,PageBean pageBean) throws Exception {
+        return chargeRecordMapper.overdueDetails(chargeRecord);
+    }
 }
