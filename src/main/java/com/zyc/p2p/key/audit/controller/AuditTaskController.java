@@ -87,7 +87,7 @@ public class AuditTaskController extends BaseAction{
         System.err.println("auditTask=="+auditTask);
         Map<String, Object> map = null;
         long date =new Date().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd号HH时mm分ss秒");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String str = dateFormat.format(date);
         Integer year = Integer.parseInt(str.substring(0, 4).toString());
         Integer month =Integer.parseInt(str.substring(5, 7).toString());
@@ -108,7 +108,7 @@ public class AuditTaskController extends BaseAction{
                         month=1;
                         year+=1;
                     }
-                    String day = year+"年"+month+"月"+"06号00时00分00秒";
+                    String day = year+"-"+month+"-"+"06 00:00:00";
                     System.err.println("day=="+day);
                     ChargeRecord c = new ChargeRecord();
                     c.setRealName(auditTask.getRealName());//姓名
