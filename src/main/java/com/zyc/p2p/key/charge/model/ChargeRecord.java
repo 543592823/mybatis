@@ -24,7 +24,11 @@ public class ChargeRecord {
 
     private String refundDate;
 
-    public ChargeRecord(String realName, String idNumber, Integer perlods, Float currentReturn, Float capital, Float serviceCost, Float interest, String state, String chargeDate, String refundDate) {
+    private Float overdueCount;
+
+    private Float overdueCost;
+
+    public ChargeRecord(String realName, String idNumber, Integer perlods, Float currentReturn, Float capital, Float serviceCost, Float interest, String state, String chargeDate, String refundDate,Float overdueCount,Float overdueCost) {
         this.realName = realName;
         this.idNumber = idNumber;
         this.perlods = perlods;
@@ -35,6 +39,8 @@ public class ChargeRecord {
         this.state = state;
         this.chargeDate = chargeDate;
         this.refundDate = refundDate;
+        this.overdueCount=overdueCount;
+        this.overdueCost=overdueCost;
     }
 
     public ChargeRecord() {
@@ -119,5 +125,21 @@ public class ChargeRecord {
 
     public void setRefundDate(String refundDate) {
         this.refundDate = refundDate;
+    }
+
+    public Float getOverdueCount() {
+        return overdueCount;
+    }
+
+    public void setOverdueCount(Float overdueCount) {
+        this.overdueCount = overdueCount;
+    }
+
+    public Float getOverdueCost() {
+        return overdueCost;
+    }
+
+    public void setOverdueCost(Float overdueCost) {
+        this.overdueCost = overdueCost;
     }
 }
