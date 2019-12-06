@@ -119,6 +119,7 @@
       <if test="null != phoneNumber and '' != phoneNumber " >
         and phone_number like concat('%',concat(#{phoneNumber},'%'))
       </if>
+      and state='已还款'
       ORDER BY audit_id DESC
     </select>
 </mapper>
