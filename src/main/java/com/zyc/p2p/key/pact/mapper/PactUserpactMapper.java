@@ -12,4 +12,6 @@ public interface PactUserpactMapper {
 
     //查询所有合同
     List<PactUserpact> selPactListPager(PactUserpact record)throws Exception;
+
+    int delPact(PactUserpact record)throws Exception;
 }

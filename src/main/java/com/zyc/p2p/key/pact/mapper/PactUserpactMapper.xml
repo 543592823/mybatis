@@ -19,7 +19,10 @@
     insert into pact_userpact (real_name, id_number,phone_number, loan_manay, perlods)
     values (#{realName}, #{idNumber}, #{phoneNumber}, #{loanManay}, #{perlods})
   </insert>
-  <select id="selPactListPager" resultType="com.zyc.p2p.key.pact.model.PactUserpact"
+    <delete id="delPact" parameterType="com.zyc.p2p.key.pact.model.PactUserpact">
+      DELETE FROM pact_userpact WHERE pact_id = #{pactId}
+    </delete>
+    <select id="selPactListPager" resultType="com.zyc.p2p.key.pact.model.PactUserpact"
           parameterType="com.zyc.p2p.key.pact.model.PactUserpact">
      SELECT
      <include refid="Base_Column_List"/>

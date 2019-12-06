@@ -36,8 +36,18 @@ public class AuditTaskServiceImpl implements IAuditTaskService {
     }
 
     @Override
+    public int uptPut(AuditTask auditTask) throws Exception {
+        return auditTaskMapper.uptPut(auditTask);
+    }
+
+    @Override
     public int uptTackState(AuditTask auditTask) throws Exception {
         return this.auditTaskMapper.uptTackState(auditTask);
+    }
+
+    @Override
+    public List<AuditTask> loanListPager(AuditTask auditTask,PageBean pageBean) throws Exception {
+        return this.auditTaskMapper.loanListPager(auditTask);
     }
 
 

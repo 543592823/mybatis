@@ -12,4 +12,6 @@ public interface IPactUserpactService {
 
     //查询所有合同
     List<PactUserpact> selPactListPager(PactUserpact record, PageBean pageBean)throws Exception;
+
+    int delPact(PactUserpact record)throws Exception;
 }

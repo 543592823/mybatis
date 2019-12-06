@@ -17,10 +17,10 @@ import java.util.Map;
 @RequestMapping(value = "/tree")
 public class TreeController extends BaseAction{
 
+    TreeDto treeDto = new TreeDto();
+
     @Autowired
     private ITreeNodeService treeNodeService;
-
-    TreeDto treeDto = new TreeDto();
 
     @RequestMapping(value = "/list")
     @ResponseBody
@@ -47,6 +47,13 @@ public class TreeController extends BaseAction{
         List<TreeNode> treeNodes = this.treeNodeService.setTreeNode(treeNodeId);
         t.setChildren(treeNodes);
     }
+
+
+
+
+
+
+
 
     public void ralename(String ralename){
         if ("审核员".equals(ralename)){

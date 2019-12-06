@@ -38,13 +38,25 @@ public class PactController extends BaseAction{
     @RequestMapping(value = "/addPact")
     @ResponseBody
     public Map<String, Object> PfuserList(PactUserpact pactUserpact){
-        System.err.println("pactUserpact=="+pactUserpact);
         Map<String, Object> map = null;
         try {
             this.pactUserpactService.insertPact(pactUserpact);
             map = this.toMessage("合同签订成功", 1, null);
         } catch (Exception e) {
             map = this.toMessage("合同签订失败", 0, null);
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public Map<String, Object> delPact(PactUserpact pactUserpact){
+        Map<String, Object> map = null;
+        try {
+            this.pactUserpactService.delPact(pactUserpact);
+            map = this.toMessage("删除成功", 1, null);
+        } catch (Exception e) {
+            map = this.toMessage("删除失败", 0, null);
         }
         return map;
     }

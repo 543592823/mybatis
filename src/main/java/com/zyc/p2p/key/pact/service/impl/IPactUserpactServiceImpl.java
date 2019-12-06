@@ -26,5 +26,10 @@ public class IPactUserpactServiceImpl implements IPactUserpactService {
         return this.pactUserpactMapper.selPactListPager(record);
     }
 
+    @Override
+    public int delPact(PactUserpact record) throws Exception {
+        return this.pactUserpactMapper.delPact(record);
+    }
+
 
 }
