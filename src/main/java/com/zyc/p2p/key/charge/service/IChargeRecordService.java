@@ -6,7 +6,7 @@ import com.zyc.p2p.key.charge.model.ChargeRecord;
 import java.util.List;
 
 public interface IChargeRecordService {
-//    int insert(ChargeRecord record) throws Exception;
+    int insert(ChargeRecord record) throws Exception;
 //
 //    int insertSelective(ChargeRecord record) throws Exception;
 

@@ -15,10 +15,10 @@ public class ChargeRecordServiceImpl implements IChargeRecordService {
     @Autowired
     private ChargeRecordMapper chargeRecordMapper;
 
-//    @Override
-//    public int insert(ChargeRecord record) throws Exception {
-//        return this.chargeRecordMapper.insert(record);
-//    }
+    @Override
+    public int insert(ChargeRecord record) throws Exception {
+        return this.chargeRecordMapper.insert(record);
+    }
 //
 //    @Override
 //    public int insertSelective(ChargeRecord record) throws Exception {

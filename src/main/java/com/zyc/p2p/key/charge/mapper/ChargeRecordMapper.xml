@@ -21,14 +21,14 @@
   <sql id="Base_Column_List" >
     real_name, id_number, perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date,overdue_count,overdue_cost
   </sql>
-  <!--<insert id="insert" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord" >-->
-    <!--insert into charge_record (real_name, id_number, perlods, -->
-      <!--current_return, capital, service_cost, -->
-      <!--interest, state, charge_date)-->
-    <!--values (#{realName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{perlods,jdbcType=INTEGER}, -->
-      <!--#{currentReturn,jdbcType=REAL}, #{capital,jdbcType=REAL}, #{serviceCost,jdbcType=REAL}, -->
-      <!--#{interest,jdbcType=REAL}, #{state,jdbcType=VARCHAR}, #{chargeDate,jdbcType=VARCHAR})-->
-  <!--</insert>-->
+  <insert id="insert" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord" >
+    insert into charge_record (real_name, id_number, perlods,
+      current_return, capital, service_cost,
+      interest, state, charge_date)
+    values (#{realName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{perlods,jdbcType=INTEGER},
+      #{currentReturn,jdbcType=REAL}, #{capital,jdbcType=REAL}, #{serviceCost,jdbcType=REAL},
+      #{interest,jdbcType=REAL}, #{state,jdbcType=VARCHAR}, #{chargeDate,jdbcType=VARCHAR})
+  </insert>
   <!--<insert id="insertSelective" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord" >-->
     <!--insert into charge_record-->
     <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
