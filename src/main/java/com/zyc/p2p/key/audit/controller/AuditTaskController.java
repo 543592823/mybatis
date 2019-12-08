@@ -170,7 +170,6 @@ public class AuditTaskController extends BaseAction{
         Map<String, Object> map = null;
         PageBean pageBean = new PageBean();
         pageBean.inItRequest(request);
-       // auditTask.setOverdueDay();
         try {
             List<AuditTask> list = this.auditTaskService.overdueList(auditTask,pageBean);
             map = this.toPage("查询成功", 1, list,pageBean);
