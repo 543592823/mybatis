@@ -1,6 +1,7 @@
 package com.zyc.p2p.key.charge.controller;
 
 import com.zyc.p2p.base.action.BaseAction;
+import com.zyc.p2p.base.util.MyDateUtil;
 import com.zyc.p2p.base.util.PageBean;
 import com.zyc.p2p.key.audit.model.AuditTask;
 import com.zyc.p2p.key.charge.model.ChargeRecord;
@@ -32,6 +33,28 @@ public class ChargeController extends BaseAction {
         System.err.println("record=="+record);
         try {
             List<ChargeRecord> list = this.chargeRecordService.selChargePager(record,pageBean);
+            System.err.println("list=="+list);
+            map = this.toPage("查询成功", 1, list,pageBean);
+        } catch (Exception e) {
+            map = this.toMessage("查询失败", 0, null);
+        }
+        System.err.println("map=="+map);
+        return map;
+    }
+
+    //逾期详情
+    @RequestMapping("/overdueDetails")
+    @ResponseBody
+    public Map<String, Object> overdueDetails(ChargeRecord record, HttpServletRequest request){
+        Map<String, Object> map = null;
+        PageBean pageBean = new PageBean();
+        pageBean.inItRequest(request);
+        Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
+
+       // record.setOverdueCount();
+        System.err.println("record=="+record);
+        try {
+            List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
             System.err.println("list=="+list);
             map = this.toPage("查询成功", 1, list,pageBean);
         } catch (Exception e) {

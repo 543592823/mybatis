@@ -11,4 +11,7 @@ public interface IChargeRecordService {
     int insertSelective(ChargeRecord record) throws Exception;
 
     List<ChargeRecord> selChargePager(ChargeRecord record,PageBean pageBean) throws Exception;
+
+    //逾期详情
+    List<ChargeRecord> overdueDetails(ChargeRecord chargeRecord,PageBean pageBean) throws Exception;
 }

@@ -98,4 +98,9 @@
     perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date
     FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber}
   </select>
+    <select id="overdueDetails" resultType="com.zyc.p2p.key.charge.model.ChargeRecord"
+            parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
+      SELECT perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date,overdue_count,overdue_cost
+      FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber} AND state='已扣款'
+    </select>
 </mapper>
