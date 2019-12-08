@@ -58,16 +58,16 @@ public class ChargeController extends BaseAction {
             record.setOverdueCount(over);
             AuditTask auditTask=new AuditTask();
             if(auditTask.getLoanManay()>1000&&auditTask.getLoanManay()<=2000){
-                record.setOverdueCost(record.getOverdueCount()*6);
+                record.setOverdueCost(record.getOverdueCount()*6L);
             }
             if (auditTask.getLoanManay()>2000&&auditTask.getLoanManay()<=3000){
-                record.setOverdueCost(record.getOverdueCount()*8);
+                record.setOverdueCost(record.getOverdueCount()*8L);
             }
             if (auditTask.getLoanManay()>3000&&auditTask.getLoanManay()<=5000){
-                record.setOverdueCost(record.getOverdueCount()*12);
+                record.setOverdueCost(record.getOverdueCount()*12L);
             }
             if (auditTask.getLoanManay()>5000&&auditTask.getLoanManay()<=10000){
-                record.setOverdueCost(record.getOverdueCount()*16);
+                record.setOverdueCost(record.getOverdueCount()*16L);
             }
             System.err.println("record=="+record);
             List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
