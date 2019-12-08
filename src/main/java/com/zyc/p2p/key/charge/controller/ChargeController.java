@@ -52,23 +52,24 @@ public class ChargeController extends BaseAction {
         Map<String, Object> map = null;
         PageBean pageBean = new PageBean();
         pageBean.inItRequest(request);
-        Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
-        record.setOverdueCount(over);
-        AuditTask auditTask=new AuditTask();
-        if(auditTask.getLoanManay()>1000&&auditTask.getLoanManay()<=2000){
-            record.setOverdueCost(record.getOverdueCount()*6);
-        }
-        if (auditTask.getLoanManay()>2000&&auditTask.getLoanManay()<=3000){
-            record.setOverdueCost(record.getOverdueCount()*8);
-        }
-        if (auditTask.getLoanManay()>3000&&auditTask.getLoanManay()<=5000){
-            record.setOverdueCost(record.getOverdueCount()*12);
-        }
-        if (auditTask.getLoanManay()>5000&&auditTask.getLoanManay()<=10000){
-            record.setOverdueCost(record.getOverdueCount()*16);
-        }
-        System.err.println("record=="+record);
+
         try {
+            Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
+            record.setOverdueCount(over);
+            AuditTask auditTask=new AuditTask();
+            if(auditTask.getLoanManay()>1000&&auditTask.getLoanManay()<=2000){
+                record.setOverdueCost(record.getOverdueCount()*6);
+            }
+            if (auditTask.getLoanManay()>2000&&auditTask.getLoanManay()<=3000){
+                record.setOverdueCost(record.getOverdueCount()*8);
+            }
+            if (auditTask.getLoanManay()>3000&&auditTask.getLoanManay()<=5000){
+                record.setOverdueCost(record.getOverdueCount()*12);
+            }
+            if (auditTask.getLoanManay()>5000&&auditTask.getLoanManay()<=10000){
+                record.setOverdueCost(record.getOverdueCount()*16);
+            }
+            System.err.println("record=="+record);
             List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
             System.err.println("list=="+list);
             map = this.toPage("查询成功", 1, list,pageBean);
