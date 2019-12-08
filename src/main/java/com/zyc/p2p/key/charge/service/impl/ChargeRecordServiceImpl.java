@@ -31,7 +31,12 @@ public class ChargeRecordServiceImpl implements IChargeRecordService {
     }
 
     @Override
-    public List<ChargeRecord> overdueDetails(ChargeRecord chargeRecord,PageBean pageBean) throws Exception {
-        return chargeRecordMapper.overdueDetails(chargeRecord);
+    public List<ChargeRecord> overdueDetails(ChargeRecord record,PageBean pageBean) throws Exception {
+        return chargeRecordMapper.overdueDetails(record);
+    }
+
+    @Override
+    public int updateOverdue(ChargeRecord record) throws Exception {
+        return chargeRecordMapper.updateOverdue(record);
     }
 }

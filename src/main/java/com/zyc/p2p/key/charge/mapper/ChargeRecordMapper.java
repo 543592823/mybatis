@@ -13,7 +13,9 @@ public interface ChargeRecordMapper {
     List<ChargeRecord> selChargePager(ChargeRecord record) throws Exception;
 
     //逾期详情
-    List<ChargeRecord> overdueDetails(ChargeRecord chargeRecord) throws Exception;
+    List<ChargeRecord> overdueDetails(ChargeRecord record) throws Exception;
+
+    int updateOverdue(ChargeRecord record) throws Exception;
 
 
 }

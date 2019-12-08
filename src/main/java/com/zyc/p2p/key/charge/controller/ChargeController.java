@@ -66,7 +66,9 @@ public class ChargeController extends BaseAction {
             record.setOverdueCost(record.getOverdueCount()*16L);
             System.out.println(record.getOverdueCost());
         }
+
         try {
+            chargeRecordService.updateOverdue(record);
             List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,pageBean);
             System.err.println("list=="+list);
             map = this.toPage("查询成功", 1, list,pageBean);
