@@ -30,7 +30,7 @@
       #{interest,jdbcType=REAL}, #{state,jdbcType=VARCHAR}, #{chargeDate,jdbcType=VARCHAR})
   </insert>
   <update id="updateOverdue" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
-    UPDATE charge_record SET overdue_count=#{overdueCount},overdue_cost=#{overdueCost} WHERE id_number=#{idNumber},state='已扣款'
+    UPDATE charge_record SET overdue_count=#{overdueCount},overdue_cost=#{overdueCost} WHERE id_number=#{idNumber} AND state='已扣款'
   </update>
   <!--<insert id="insertSelective" parameterType="com.zyc.p2p.key.charge.model.ChargeRecord" >-->
     <!--insert into charge_record-->
