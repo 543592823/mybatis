@@ -47,7 +47,7 @@ import lombok.Setter;
 public class JSONResult {
     private boolean success = true;
     private String message;
-    public void mark(String  errorMsg){
+    public void mark(String errorMsg){
         this.success = false;
         this.message = errorMsg;
     }

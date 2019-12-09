@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class DxyzTest {
 
-    //获取验证码
+
     public String RandomNote(){
         Random rd = new Random();
         Integer randomNum = rd.nextInt(1000000);
@@ -69,8 +69,8 @@ public class DxyzTest {
     //
     public void lj(String mobile){
 //        mobile = "18711539016";
-//        String s = mobile(mobile);
-        String s = RandomNote();
+        String s = sendMsg(mobile);
+//        String s = RandomNote();
         System.out.println("s=="+s);
 //        //连接
         setRun(s,"name");
