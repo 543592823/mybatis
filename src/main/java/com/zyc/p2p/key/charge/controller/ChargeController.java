@@ -48,24 +48,23 @@ public class ChargeController extends BaseAction {
     @ResponseBody
     public Map<String, Object> updateOverdue(ChargeRecord record){
         Map<String, Object> map = null;
-        AuditTask auditTask=new AuditTask();
+//        AuditTask auditTask=new AuditTask();
         try {
             ChargeRecord chargeRecord = this.chargeRecordService.singleList(record);
-            System.out.println(chargeRecord.getChargeDate());
-            System.out.println(chargeRecord.getRefundDate());
             Long over =MyDateUtil.between_days(chargeRecord.getChargeDate(),chargeRecord.getRefundDate());
             record.setOverdueCount(over);
-            if(auditTask.getLoanManay()>1000 && auditTask.getLoanManay()<=2000){
+            if(chargeRecord.getLoanManay()>1000 && chargeRecord.getLoanManay()<=2000){
                 record.setOverdueCost(record.getOverdueCount()*6L);
             }
-            if (auditTask.getLoanManay()>2000 && auditTask.getLoanManay()<=3000){
+            if (chargeRecord.getLoanManay()>2000 && chargeRecord.getLoanManay()<=3000){
                 record.setOverdueCost(record.getOverdueCount()*8L);
             }
-            if (auditTask.getLoanManay()>3000 && auditTask.getLoanManay()<=5000){
+            if (chargeRecord.getLoanManay()>3000 && chargeRecord.getLoanManay()<=5000){
                 record.setOverdueCost(record.getOverdueCount()*12L);
             }
-            if (auditTask.getLoanManay()>5000 && auditTask.getLoanManay()<=10000){
+            if (chargeRecord.getLoanManay()>5000 && chargeRecord.getLoanManay()<=10000){
                 record.setOverdueCost(record.getOverdueCount()*16L);
+                System.out.println(record.getOverdueCost());
             }
             this.chargeRecordService.updateOverdue(record);
             map = this.toMessage("修改成功", 1, null);

@@ -7,7 +7,7 @@ import java.util.Date;
 public class MyDateUtil {
     public static Long between_days(String a, String b) {
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 自定义时间格式
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// 自定义时间格式
 
         Calendar calendar_a = Calendar.getInstance();// 获取日历对象
         Calendar calendar_b = Calendar.getInstance();

@@ -106,11 +106,11 @@
   </select>
     <select id="overdueDetails" resultType="com.zyc.p2p.key.charge.model.ChargeRecord"
             parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
-      SELECT id_number,perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date,overdue_count,overdue_cost
+      SELECT perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date,overdue_count,overdue_cost
       FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber} AND state='已扣款' AND refund_date>charge_date
     </select>
   <select id="singleList" resultType="com.zyc.p2p.key.charge.model.ChargeRecord"
           parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
-    select * FROM charge_record where 1=1 AND id_number=#{idNumber} and state='已扣款'
+    SELECT a.loan_manay,c.charge_date,c.refund_date FROM audit_task a,charge_record c WHERE a.id_number=c.id_number AND c.state='已扣款'
   </select>
 </mapper>
