@@ -16,4 +16,6 @@ public interface IChargeRecordService {
     List<ChargeRecord> overdueDetails(ChargeRecord record,PageBean pageBean) throws Exception;
 
     int updateOverdue(ChargeRecord record) throws Exception;
+
+    ChargeRecord singleList(ChargeRecord record) throws Exception;
 }

@@ -108,18 +108,29 @@
   </select>
     <select id="overdueList" resultType="com.zyc.p2p.key.audit.model.AuditTask"
             parameterType="com.zyc.p2p.key.audit.model.AuditTask">
-      SELECT audit_id,real_name,id_number,phone_number,loan_manay,perlods,refund_manay,perlods,state,refund_time,overdue_day
-      FROM audit_task WHERE 1 = 1
+      <!--SELECT audit_id,real_name,id_number,phone_number,loan_manay,perlods,refund_manay,perlods,state,refund_time,overdue_day-->
+      <!--FROM audit_task WHERE 1 = 1-->
+      <!--<if test=" null != realName and '' != realName " >-->
+        <!--and real_name like concat('%',concat(#{realName},'%'))-->
+      <!--</if>-->
+      <!--<if test=" null != idNumber and '' != idNumber " >-->
+        <!--and id_number like concat('%',concat(#{idNumber},'%'))-->
+      <!--</if>-->
+      <!--<if test="null != phoneNumber and '' != phoneNumber " >-->
+        <!--and phone_number like concat('%',concat(#{phoneNumber},'%'))-->
+      <!--</if>-->
+      <!--and state='已还款'-->
+      <!--ORDER BY audit_id DESC-->
+      SELECT a.audit_id,a.real_name,a.id_number,a.phone_number,a.loan_manay,a.perlods,a.refund_manay,a.perlods,a.state,a.refund_time,a.overdue_day,c.charge_date,c.refund_date FROM audit_task a,charge_record c WHERE a.id_number=c.id_number
       <if test=" null != realName and '' != realName " >
-        and real_name like concat('%',concat(#{realName},'%'))
+      and real_name like concat('%',concat(#{realName},'%'))
       </if>
       <if test=" null != idNumber and '' != idNumber " >
-        and id_number like concat('%',concat(#{idNumber},'%'))
+      and id_number like concat('%',concat(#{idNumber},'%'))
       </if>
       <if test="null != phoneNumber and '' != phoneNumber " >
-        and phone_number like concat('%',concat(#{phoneNumber},'%'))
+      and phone_number like concat('%',concat(#{phoneNumber},'%'))
       </if>
-      and state='已还款'
-      ORDER BY audit_id DESC
+      AND c.state='已扣款'
     </select>
 </mapper>

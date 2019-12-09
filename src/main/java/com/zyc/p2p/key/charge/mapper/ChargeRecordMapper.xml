@@ -109,4 +109,8 @@
       SELECT id_number,perlods, current_return, capital,service_cost,interest,state,charge_date,refund_date,overdue_count,overdue_cost
       FROM charge_record WHERE 1 = 1 AND id_number = #{idNumber} AND state='已扣款' AND refund_date>charge_date
     </select>
+  <select id="singleList" resultType="com.zyc.p2p.key.charge.model.ChargeRecord"
+          parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
+    select charge_date,refund_date FROM charge_record where id_number=#{idNumber}
+  </select>
 </mapper>

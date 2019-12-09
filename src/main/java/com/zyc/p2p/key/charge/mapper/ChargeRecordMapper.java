@@ -17,5 +17,7 @@ public interface ChargeRecordMapper {
 
     int updateOverdue(ChargeRecord record) throws Exception;
 
+    ChargeRecord singleList(ChargeRecord record) throws Exception;
+
 
 }

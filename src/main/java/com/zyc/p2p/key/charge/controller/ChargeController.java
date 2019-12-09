@@ -48,12 +48,11 @@ public class ChargeController extends BaseAction {
     @ResponseBody
     public Map<String, Object> updateOverdue(ChargeRecord record){
         Map<String, Object> map = null;
-
+        AuditTask auditTask=new AuditTask();
         try {
-            List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,null);
-            Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
+            ChargeRecord chargeRecord = this.chargeRecordService.singleList(record);
+            Long over =MyDateUtil.between_days(chargeRecord.getChargeDate(),chargeRecord.getRefundDate());
             record.setOverdueCount(over);
-            AuditTask auditTask=new AuditTask();
             if(auditTask.getLoanManay()>1000 && auditTask.getLoanManay()<=2000){
                 record.setOverdueCost(record.getOverdueCount()*6L);
             }

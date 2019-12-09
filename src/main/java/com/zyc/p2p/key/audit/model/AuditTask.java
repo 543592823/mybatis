@@ -31,4 +31,12 @@ public class AuditTask {
 
     private String state;
 
+    private String chargeDate;
+
+    private String refundDate;
+
+    private Long overdueCount;
+
+    private Long overdueCost;
+
 }

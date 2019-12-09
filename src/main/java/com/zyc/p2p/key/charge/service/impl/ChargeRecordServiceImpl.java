@@ -39,4 +39,9 @@ public class ChargeRecordServiceImpl implements IChargeRecordService {
     public int updateOverdue(ChargeRecord record) throws Exception {
         return chargeRecordMapper.updateOverdue(record);
     }
+
+    @Override
+    public ChargeRecord singleList(ChargeRecord record) throws Exception {
+        return chargeRecordMapper.singleList(record);
+    }
 }
