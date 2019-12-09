@@ -111,6 +111,6 @@
     </select>
   <select id="singleList" resultType="com.zyc.p2p.key.charge.model.ChargeRecord"
           parameterType="com.zyc.p2p.key.charge.model.ChargeRecord">
-    select charge_date,refund_date FROM charge_record where id_number=#{idNumber}
+    select * FROM charge_record where 1=1 AND id_number=#{idNumber} and state='已扣款'
   </select>
 </mapper>

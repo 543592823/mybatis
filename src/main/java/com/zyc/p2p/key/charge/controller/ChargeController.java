@@ -51,6 +51,8 @@ public class ChargeController extends BaseAction {
         AuditTask auditTask=new AuditTask();
         try {
             ChargeRecord chargeRecord = this.chargeRecordService.singleList(record);
+            System.out.println(chargeRecord.getChargeDate());
+            System.out.println(chargeRecord.getRefundDate());
             Long over =MyDateUtil.between_days(chargeRecord.getChargeDate(),chargeRecord.getRefundDate());
             record.setOverdueCount(over);
             if(auditTask.getLoanManay()>1000 && auditTask.getLoanManay()<=2000){
