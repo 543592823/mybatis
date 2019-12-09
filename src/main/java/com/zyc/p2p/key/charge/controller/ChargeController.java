@@ -48,22 +48,24 @@ public class ChargeController extends BaseAction {
     @ResponseBody
     public Map<String, Object> updateOverdue(ChargeRecord record){
         Map<String, Object> map = null;
-        Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
-        record.setOverdueCount(over);
-        AuditTask auditTask=new AuditTask();
-        if(auditTask.getLoanManay()>1000 && auditTask.getLoanManay()<=2000){
-            record.setOverdueCost(record.getOverdueCount()*6L);
-        }
-        if (auditTask.getLoanManay()>2000 && auditTask.getLoanManay()<=3000){
-            record.setOverdueCost(record.getOverdueCount()*8L);
-        }
-        if (auditTask.getLoanManay()>3000 && auditTask.getLoanManay()<=5000){
-            record.setOverdueCost(record.getOverdueCount()*12L);
-        }
-        if (auditTask.getLoanManay()>5000 && auditTask.getLoanManay()<=10000){
-          record.setOverdueCost(record.getOverdueCount()*16L);
-        }
+
         try {
+            List<ChargeRecord> list = this.chargeRecordService.overdueDetails(record,null);
+            Long over =MyDateUtil.between_days(record.getChargeDate(),record.getRefundDate());
+            record.setOverdueCount(over);
+            AuditTask auditTask=new AuditTask();
+            if(auditTask.getLoanManay()>1000 && auditTask.getLoanManay()<=2000){
+                record.setOverdueCost(record.getOverdueCount()*6L);
+            }
+            if (auditTask.getLoanManay()>2000 && auditTask.getLoanManay()<=3000){
+                record.setOverdueCost(record.getOverdueCount()*8L);
+            }
+            if (auditTask.getLoanManay()>3000 && auditTask.getLoanManay()<=5000){
+                record.setOverdueCost(record.getOverdueCount()*12L);
+            }
+            if (auditTask.getLoanManay()>5000 && auditTask.getLoanManay()<=10000){
+                record.setOverdueCost(record.getOverdueCount()*16L);
+            }
             this.chargeRecordService.updateOverdue(record);
             map = this.toMessage("修改成功", 1, null);
         } catch (Exception e) {
