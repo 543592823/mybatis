@@ -22,7 +22,7 @@
     <!--servlet-->
     <javax-servlet-api.version>4.0.0</javax-servlet-api.version>
     <!--mybatis-->
-    <mybatis.version>3.4.5</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
     <!--mysql-->
     <mysql.version>5.1.44</mysql.version>
     <!--lombok-->
