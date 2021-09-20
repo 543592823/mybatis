@@ -59,7 +59,7 @@
     <!--jsr303:hibernate-validator-->
     <hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
     <!--shiro-->
-    <shiro.version>1.2.5</shiro.version>
+    <shiro.version>1.8.0</shiro.version>
     <!--配置阿里云插件-->
     <fastjson.version>1.2.15</fastjson.version>
     <httpcomponents.version>4.2.1</httpcomponents.version>
